@@ -1,0 +1,112 @@
+---
+title: Refactoring
+description: Safe rename refactoring with automatic updates
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The plugin supports safe rename refactoring that automatically updates all references to a symbol.
+
+## Rename Refactoring
+
+Rename any symbol and have all its usages updated automatically:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Rename | `Shift+F6` | `Shift+F6` |
+
+### What Can Be Renamed
+
+- **Templates**: All component instantiations will be updated
+- **Functions**: All function calls will be updated
+- **Signals**: All references within the template will be updated
+- **Variables**: All uses of the variable will be updated
+- **Components**: All accesses to the component will be updated
+
+### Example
+
+Before:
+```circom
+template OriginalName() {
+    signal input value;
+    signal output doubled;
+    doubled <== value * 2;
+}
+
+template Consumer() {
+    component instance = OriginalName();
+    instance.value <== x;
+}
+```
+
+After renaming `OriginalName` to `Doubler`:
+```circom
+template Doubler() {
+    signal input value;
+    signal output doubled;
+    doubled <== value * 2;
+}
+
+template Consumer() {
+    component instance = Doubler();
+    instance.value <== x;
+}
+```
+
+## How to Use
+
+1. **Position cursor** on the symbol you want to rename
+2. **Press `Shift+F6`** to start the rename
+3. **Type the new name** - you'll see a preview of all changes
+4. **Press Enter** to apply, or **Escape** to cancel
+
+<Aside type="tip">
+The rename dialog shows a preview of all files that will be changed. Review this before confirming.
+</Aside>
+
+## In-Place Rename
+
+For simple renames within a single file, the plugin uses in-place rename:
+
+1. The symbol becomes editable directly in the editor
+2. All occurrences are highlighted
+3. As you type, all occurrences update in real-time
+4. Press Enter to confirm or Escape to cancel
+
+## Name Validation
+
+The plugin validates new names to ensure they're valid Circom identifiers:
+
+### Valid Names Must:
+- Start with a letter, underscore (`_`), or dollar sign (`$`)
+- Contain only letters, digits, underscores, or dollar signs
+
+### Reserved Words
+
+You cannot rename a symbol to a reserved keyword:
+
+`pragma`, `circom`, `include`, `template`, `function`, `component`, `main`, `public`, `signal`, `input`, `output`, `var`, `if`, `else`, `for`, `while`, `do`, `log`, `assert`, `return`, `parallel`, `custom`, `bus`
+
+<Aside type="caution">
+If you try to use a reserved word, the rename will show an error and prevent the change.
+</Aside>
+
+## Best Practices
+
+### Rename One Thing at a Time
+
+Make one rename, verify it works, then proceed to the next. This makes it easier to revert if something goes wrong.
+
+### Use Descriptive Names
+
+Take the opportunity when renaming to choose clear, descriptive names:
+- `h` → `hasher`
+- `tmp` → `intermediateHash`
+- `x` → `inputValue`
+
+### Check the Preview
+
+Always review the preview of changes before confirming, especially for:
+- Templates used across multiple files
+- Commonly used function names
+- Signals with generic names

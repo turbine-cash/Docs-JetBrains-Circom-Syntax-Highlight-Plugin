@@ -1,0 +1,125 @@
+---
+title: Syntax Highlighting
+description: Full Circom syntax highlighting with specialized colors
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The plugin provides comprehensive syntax highlighting for Circom 2.x, making your code easier to read and understand at a glance.
+
+## Highlighting Categories
+
+### Keywords
+
+Standard Circom keywords are highlighted with the default keyword color:
+
+```circom
+pragma circom 2.0.0;
+
+template Multiplier() {
+    signal input a;
+    signal output out;
+    var temp;
+    component sub = SubComponent();
+}
+
+function square(x) {
+    return x * x;
+}
+```
+
+Keywords include: `pragma`, `circom`, `include`, `template`, `function`, `component`, `var`, `signal`, `if`, `else`, `for`, `while`, `do`, `return`, `assert`, `log`, `main`, `public`
+
+### Signal Types
+
+The `input` and `output` keywords receive special highlighting in **blue-violet** (#879DE0) to make signal direction immediately visible:
+
+```circom
+template SignalDemo() {
+    signal input publicValue;
+    signal input secretKey;
+    signal output commitment;
+    signal output nullifier;
+}
+```
+
+<Aside type="note">
+In Circom, `input` signals are values provided by the prover, while `output` signals are computed results that can be verified.
+</Aside>
+
+### Constraint Operators
+
+Circom's constraint operators are highlighted in **teal** (#4EC9B0) to distinguish them from regular operators:
+
+```circom
+template ConstraintDemo() {
+    signal input a;
+    signal input b;
+    signal output c;
+    signal witness;
+
+    // Constraint assignment (signal flow)
+    c <== a * b;
+
+    // Reverse constraint
+    a * b ==> c;
+
+    // Equality constraint
+    a * b === c;
+
+    // Non-constraint assignment
+    witness <-- a + b;
+    a + b --> witness;
+}
+```
+
+<Aside type="tip">
+Understanding constraint operators:
+- `<==` and `==>` create constraints AND assign values (signal flow)
+- `===` creates only a constraint (equality check)
+- `<--` and `-->` assign values WITHOUT creating constraints (witness computation)
+</Aside>
+
+### Template Modifiers
+
+Template modifiers are highlighted in **yellow** (#BBB529):
+
+```circom
+pragma circom 2.0.0;
+pragma custom_templates;
+
+template parallel ParallelAdder(n) {
+    signal input in[n];
+    signal output out;
+}
+
+template custom CustomGate() {
+    signal input a;
+    signal output c;
+}
+
+bus DataBus(width) {
+    signal data[width];
+}
+```
+
+Modifiers include: `parallel`, `custom`, `bus`
+
+## Additional Highlighting
+
+The plugin also highlights:
+
+- **Comments**: Both line (`//`) and block (`/* */`) comments
+- **Strings**: String literals in quotes
+- **Numbers**: Decimal and hexadecimal numbers (`123`, `0x1A2B`)
+- **Brackets**: Parentheses, square brackets, and curly braces
+
+## Customizing Colors
+
+You can customize all syntax colors through your IDE settings:
+
+1. Go to **Settings** → **Editor** → **Color Scheme** → **Circom**
+2. Adjust colors for each highlighting category
+3. Changes apply immediately to all open Circom files
+
+See [Color Settings](/features/color-settings) for more details.

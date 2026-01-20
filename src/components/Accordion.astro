@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<details class="accordion">
+  <summary class="accordion-header">
+    <span>{title}</span>
+    <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </summary>
+  <div class="accordion-content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .accordion {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--sl-color-gray-6);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    list-style: none;
+  }
+
+  .accordion-header::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-header:hover {
+    background: var(--sl-color-gray-5);
+  }
+
+  .accordion-content {
+    padding: 1rem;
+    background: var(--sl-color-black);
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .accordion-chevron {
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .accordion[open] .accordion-chevron {
+    transform: rotate(180deg);
+  }
+</style>

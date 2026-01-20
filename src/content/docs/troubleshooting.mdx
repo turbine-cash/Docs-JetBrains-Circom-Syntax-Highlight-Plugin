@@ -1,0 +1,168 @@
+---
+title: Troubleshooting
+description: Solutions to common issues with the Circom plugin
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+Solutions to common issues you might encounter when using the Circom Language Support plugin.
+
+## Syntax Highlighting Not Working
+
+If syntax highlighting doesn't appear in your `.circom` files:
+
+<Steps>
+
+1. **Check the file extension**
+
+   Ensure your file has the `.circom` extension. The plugin only activates for files with this extension.
+
+2. **Verify plugin is enabled**
+
+   Go to **Settings** → **Plugins** → **Installed** and check that "Circom Language Support" is enabled.
+
+3. **Invalidate caches**
+
+   Go to **File** → **Invalidate Caches / Restart** → **Invalidate and Restart**
+
+4. **Check IDE version**
+
+   The plugin requires JetBrains IDE version 2024.3 or later. Check your version in **Help** → **About**.
+
+</Steps>
+
+## Symbols Not Resolving
+
+If "Go to Definition" or "Find Usages" doesn't work:
+
+<Steps>
+
+1. **Wait for indexing**
+
+   After opening a project, wait for indexing to complete. Look for the progress bar at the bottom of the IDE.
+
+2. **Check for syntax errors**
+
+   Syntax errors in your file can prevent proper parsing. Look for red highlighting in the editor.
+
+3. **Refresh the project**
+
+   Right-click on the project root in the Project view and select **Reload from Disk**.
+
+4. **Rebuild indices**
+
+   Go to **File** → **Invalidate Caches / Restart** → select **Clear file system cache and Local History** → **Invalidate and Restart**
+
+</Steps>
+
+<Aside type="note">
+Reference resolution works across files in your project. Make sure all your Circom files are inside the project directory.
+</Aside>
+
+## Plugin Not Found in Marketplace
+
+If you can't find the plugin in the JetBrains Marketplace:
+
+<Steps>
+
+1. **Update IDE**
+
+   The plugin requires version 2024.3 or later. Go to **Help** → **Check for Updates**.
+
+2. **Refresh Marketplace**
+
+   In **Settings** → **Plugins** → **Marketplace**, click the refresh icon.
+
+3. **Check internet connection**
+
+   Ensure your IDE can connect to the JetBrains Marketplace.
+
+4. **Search exact name**
+
+   Search for "Circom Language Support" (the exact plugin name).
+
+</Steps>
+
+## Color Settings Not Appearing
+
+If you can't find Circom in the color scheme settings:
+
+<Steps>
+
+1. **Navigate correctly**
+
+   Go to **Settings** → **Editor** → **Color Scheme** → **Circom**
+
+2. **Open a Circom file first**
+
+   Some IDEs only show language settings after you've opened a file of that type.
+
+3. **Restart IDE**
+
+   Close and reopen the IDE after plugin installation.
+
+</Steps>
+
+## Structure View Empty
+
+If the Structure view doesn't show anything for your Circom file:
+
+<Steps>
+
+1. **Ensure file is valid**
+
+   The file must parse correctly. Check for syntax errors.
+
+2. **Open Structure view properly**
+
+   Use `Cmd+7` (macOS) or `Alt+7` (Windows/Linux), or **View** → **Tool Windows** → **Structure**
+
+3. **Check focus**
+
+   Make sure the Circom file is the active editor tab.
+
+</Steps>
+
+## Performance Issues
+
+If the IDE feels slow when editing Circom files:
+
+<Steps>
+
+1. **Increase memory**
+
+   Go to **Help** → **Change Memory Settings** and increase the heap size.
+
+2. **Close unused projects**
+
+   Having multiple large projects open can impact performance.
+
+3. **Disable unnecessary plugins**
+
+   Go to **Settings** → **Plugins** and disable plugins you don't use.
+
+4. **Check file size**
+
+   Very large Circom files (thousands of lines) may be slow. Consider splitting into multiple files.
+
+</Steps>
+
+## Getting More Help
+
+If you're still experiencing issues:
+
+1. **Check GitHub Issues**
+
+   Visit the [plugin's GitHub repository](https://github.com/ZKLSOL/JetBrains-Circom-Syntax-Highlight-Plugin/issues) to see if your issue has been reported.
+
+2. **Report a Bug**
+
+   If you've found a new issue, please [open a GitHub issue](https://github.com/ZKLSOL/JetBrains-Circom-Syntax-Highlight-Plugin/issues/new) with:
+   - Your IDE version
+   - Plugin version
+   - Steps to reproduce
+   - Any error messages
+
+3. **Include IDE Logs**
+
+   When reporting issues, include logs from **Help** → **Show Log in Finder/Explorer**.

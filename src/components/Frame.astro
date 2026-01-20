@@ -1,0 +1,42 @@
+---
+interface Props {
+  caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<figure class="frame">
+  <div class="frame-content">
+    <slot />
+  </div>
+  {caption && <figcaption class="frame-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .frame {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .frame-content {
+    display: block;
+  }
+
+  .frame-content :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .frame-caption {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-3);
+    background: var(--sl-color-gray-6);
+    border-top: 1px solid var(--sl-color-gray-5);
+    text-align: center;
+  }
+</style>

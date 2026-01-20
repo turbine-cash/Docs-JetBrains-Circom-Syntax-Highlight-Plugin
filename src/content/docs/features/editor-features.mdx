@@ -1,0 +1,94 @@
+---
+title: Editor Features
+description: Bracket matching, code folding, and comment toggling
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The plugin provides essential editor features that make working with Circom code more efficient.
+
+## Bracket Matching
+
+The plugin automatically highlights matching brackets when your cursor is positioned on one:
+
+- Parentheses `()`
+- Square brackets `[]`
+- Curly braces `{}`
+
+This helps you quickly identify the scope of blocks and ensure proper nesting in complex templates.
+
+### Navigation
+
+You can jump between matching brackets using:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Jump to matching bracket | `Cmd+]` / `Cmd+[` | `Ctrl+]` / `Ctrl+[` |
+
+## Code Folding
+
+Collapse and expand code sections to focus on what matters:
+
+### Foldable Regions
+
+- Template bodies
+- Function bodies
+- If/else blocks
+- For/while loops
+- Multi-line comments
+
+### Keyboard Shortcuts
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Fold current block | `Cmd+-` | `Ctrl+-` |
+| Unfold current block | `Cmd+=` | `Ctrl+=` |
+| Fold all | `Cmd+Shift+-` | `Ctrl+Shift+-` |
+| Expand all | `Cmd+Shift+=` | `Ctrl+Shift+=` |
+
+<Aside type="tip">
+Use fold all (`Cmd+Shift+-`) to get an overview of all templates and functions in a file, then unfold specific sections as needed.
+</Aside>
+
+## Comment Toggling
+
+Quickly toggle line comments on selected code:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Toggle line comment | `Cmd+/` | `Ctrl+/` |
+
+The plugin supports both comment styles:
+
+```circom
+// Single line comment
+
+/*
+ * Multi-line
+ * block comment
+ */
+```
+
+### Block Comments
+
+To toggle block comments around a selection:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Toggle block comment | `Cmd+Shift+/` | `Ctrl+Shift+/` |
+
+## Editor Tips
+
+### Smart Indentation
+
+The editor automatically indents code when you:
+- Press Enter after an opening brace `{`
+- Create new lines inside templates or functions
+
+### Auto-closing Brackets
+
+When you type an opening bracket, the editor automatically inserts the closing bracket:
+- `(` → `()`
+- `[` → `[]`
+- `{` → `{}`
+- `"` → `""`

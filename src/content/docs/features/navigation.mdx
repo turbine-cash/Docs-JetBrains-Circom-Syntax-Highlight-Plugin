@@ -1,0 +1,81 @@
+---
+title: Navigation
+description: Go to Symbol and Go to Definition features
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Navigate your Circom codebase efficiently with powerful navigation features.
+
+## Go to Symbol
+
+Quickly jump to any template or function in your project:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Go to Symbol | `Cmd+O` | `Ctrl+Shift+N` |
+
+### How to Use
+
+1. Press the keyboard shortcut
+2. Start typing the name of the template or function
+3. Select from the filtered results
+4. Press Enter to navigate
+
+The search supports:
+- **Partial matching**: Type `Mul` to find `Multiplier`
+- **CamelCase matching**: Type `MC` to find `MerkleChecker`
+- **All project files**: Searches across your entire project
+
+<Aside type="tip">
+Use Go to Symbol when you know the name of what you're looking for but not which file it's in.
+</Aside>
+
+## Go to Definition
+
+Jump directly to where a symbol is defined:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Go to Definition | `Cmd+Click` | `Ctrl+Click` |
+| Go to Definition (keyboard) | `Cmd+B` | `Ctrl+B` |
+
+### Supported Symbols
+
+You can navigate to definitions of:
+- **Templates**: Click on a template name to jump to its definition
+- **Functions**: Click on a function call to see its implementation
+- **Components**: Click on a component usage to find where it's instantiated
+- **Signals**: Click on a signal reference to find its declaration
+- **Variables**: Click on a variable to find where it's declared
+
+### Example
+
+```circom
+template Calculator() {
+    component add = Adder();  // Cmd+Click on "Adder" jumps to template
+    add.a <== num1;           // Cmd+Click on "a" jumps to signal declaration
+    added <== add.sum;        // Cmd+Click on "sum" jumps to output signal
+}
+```
+
+## Reference Resolution
+
+The plugin resolves references in this order:
+
+1. **Local scope**: Signals, variables, and components within the current template/function
+2. **Current file**: Templates and functions defined in the same file
+3. **Project scope**: Templates and functions from other files in the project
+
+<Aside type="note">
+For references to work across files, ensure your Circom files are in your project's source directories and the project is properly indexed.
+</Aside>
+
+## Quick Documentation
+
+While not full documentation lookup, you can see the structure of a symbol by:
+
+1. Positioning your cursor on a symbol
+2. Using **View** → **Quick Definition** (`Cmd+Y` / `Ctrl+Shift+I`)
+
+This shows a preview of the symbol's definition without leaving your current location.

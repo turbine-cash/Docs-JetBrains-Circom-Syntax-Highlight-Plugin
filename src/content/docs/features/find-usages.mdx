@@ -1,0 +1,122 @@
+---
+title: Find Usages
+description: Find all references to templates, functions, signals, and variables
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Find all places where a symbol is used throughout your project.
+
+## Using Find Usages
+
+Position your cursor on any symbol and use:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Find Usages | `Alt+F7` | `Alt+F7` |
+| Find Usages in popup | `Cmd+Alt+F7` | `Ctrl+Alt+F7` |
+
+## Supported Symbols
+
+Find Usages works with:
+
+### Templates
+
+Find all instantiations of a template:
+
+```circom
+template Hasher() {           // <- Find usages here
+    signal input left;
+    signal output hash;
+}
+
+template MerkleTree() {
+    component h1 = Hasher();  // Found: usage
+    component h2 = Hasher();  // Found: usage
+}
+```
+
+### Functions
+
+Find all calls to a function:
+
+```circom
+function factorial(n) {       // <- Find usages here
+    if (n <= 1) return 1;
+    return n * factorial(n-1); // Found: recursive call
+}
+
+template Main() {
+    var result = factorial(5); // Found: usage
+}
+```
+
+### Signals
+
+Find all references to a signal:
+
+```circom
+template Example() {
+    signal input value;        // <- Find usages here
+    signal output doubled;
+
+    doubled <== value * 2;     // Found: usage
+}
+```
+
+### Variables
+
+Find all uses of a variable:
+
+```circom
+template Loop() {
+    var sum = 0;               // <- Find usages here
+    for (var i = 0; i < 10; i++) {
+        sum += i;              // Found: usage
+    }
+}
+```
+
+### Components
+
+Find all uses of a component instance:
+
+```circom
+template Main() {
+    component adder = Adder(); // <- Find usages here
+    adder.a <== 5;             // Found: usage
+    adder.b <== 3;             // Found: usage
+    out <== adder.sum;         // Found: usage
+}
+```
+
+## Results Panel
+
+The Find Usages results appear in a tool window showing:
+
+- **File name** and path
+- **Line number** of each usage
+- **Code context** around the usage
+- **Usage type** (read, write, declaration)
+
+<Aside type="tip">
+Double-click any result to jump directly to that location in the code.
+</Aside>
+
+## Filtering Results
+
+In the results panel, you can:
+
+- Group results by file, package, or usage type
+- Filter to show only certain types of usages
+- Expand/collapse groups
+
+## Alternative: Highlight Usages in File
+
+For a quick visual overview without opening the Find Usages panel:
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Highlight usages in file | `Cmd+Shift+F7` | `Ctrl+Shift+F7` |
+
+This highlights all occurrences of the symbol in the current file.

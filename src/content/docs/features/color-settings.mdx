@@ -1,0 +1,88 @@
+---
+title: Color Settings
+description: Customize syntax highlighting colors
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+You can customize all Circom syntax highlighting colors to match your preferences or color scheme.
+
+## Accessing Color Settings
+
+1. Open **Settings** (or **Preferences** on macOS)
+2. Navigate to **Editor** → **Color Scheme** → **Circom**
+
+## Customizable Elements
+
+### Signal Types
+
+The `input` and `output` keywords.
+
+**Default**: Blue-violet (#879DE0)
+
+```circom
+signal input value;   // "input" is highlighted
+signal output result; // "output" is highlighted
+```
+
+### Constraint Operators
+
+The constraint and assignment operators specific to Circom.
+
+**Default**: Teal (#4EC9B0)
+
+```circom
+c <== a * b;  // "<==" is highlighted
+a * b === c;  // "===" is highlighted
+```
+
+### Template Modifiers
+
+The `parallel`, `custom`, and `bus` keywords.
+
+**Default**: Yellow (#BBB529)
+
+```circom
+template parallel FastAdder() { }  // "parallel" is highlighted
+template custom Gate() { }          // "custom" is highlighted
+```
+
+## Default Color Values
+
+| Element | Hex Code | Example |
+|---------|----------|---------|
+| Signal Types | `#879DE0` | `input`, `output` |
+| Constraint Operators | `#4EC9B0` | `===`, `<==`, `==>` |
+| Template Modifiers | `#BBB529` | `parallel`, `custom`, `bus` |
+
+## Inheriting from Language Defaults
+
+Other elements inherit from the IDE's language defaults:
+
+- **Keywords**: Uses your scheme's keyword color
+- **Comments**: Uses your scheme's comment color
+- **Strings**: Uses your scheme's string color
+- **Numbers**: Uses your scheme's number color
+- **Brackets**: Uses your scheme's bracket color
+
+<Aside type="tip">
+If you change your IDE color scheme (e.g., from Darcula to IntelliJ Light), the Circom highlighting will adapt while keeping your custom Circom-specific colors.
+</Aside>
+
+## Saving Custom Schemes
+
+To save your customizations:
+
+1. Click **Save As...** in the Color Scheme settings
+2. Give your scheme a name
+3. Your customizations are preserved in the new scheme
+
+## Resetting to Defaults
+
+To reset Circom colors to defaults:
+
+1. In the Circom color settings
+2. Right-click any element
+3. Select **Reset** to restore the default color
+
+Or reset all colors by selecting your scheme's parent and choosing **Restore Defaults**.

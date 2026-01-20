@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "circom",
+  "scopeName": "source.circom",
+  "fileTypes": ["circom"],
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#pragma" },
+    { "include": "#include" },
+    { "include": "#keywords" },
+    { "include": "#signal-types" },
+    { "include": "#constraint-operators" },
+    { "include": "#modifiers" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.circom",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.circom",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "pragma": {
+      "patterns": [
+        {
+          "name": "meta.pragma.circom",
+          "match": "\\b(pragma)\\s+(circom)\\s+([0-9]+\\.[0-9]+\\.[0-9]+)\\s*;",
+          "captures": {
+            "1": { "name": "keyword.control.pragma.circom" },
+            "2": { "name": "keyword.other.circom" },
+            "3": { "name": "constant.numeric.version.circom" }
+          }
+        },
+        {
+          "name": "meta.pragma.custom-templates.circom",
+          "match": "\\b(pragma)\\s+(custom_templates)\\s*;",
+          "captures": {
+            "1": { "name": "keyword.control.pragma.circom" },
+            "2": { "name": "keyword.other.circom" }
+          }
+        }
+      ]
+    },
+    "include": {
+      "name": "meta.include.circom",
+      "match": "\\b(include)\\s+(\"[^\"]*\")\\s*;",
+      "captures": {
+        "1": { "name": "keyword.control.include.circom" },
+        "2": { "name": "string.quoted.double.circom" }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.circom",
+          "match": "\\b(if|else|for|while|do|return|assert|log)\\b"
+        },
+        {
+          "name": "keyword.declaration.circom",
+          "match": "\\b(template|function|component|var|signal)\\b"
+        },
+        {
+          "name": "keyword.other.circom",
+          "match": "\\b(main|public)\\b"
+        }
+      ]
+    },
+    "signal-types": {
+      "name": "storage.type.signal.circom",
+      "match": "\\b(input|output)\\b"
+    },
+    "constraint-operators": {
+      "name": "keyword.operator.constraint.circom",
+      "match": "(===|<==|==>|<--|-->)"
+    },
+    "modifiers": {
+      "name": "storage.modifier.circom",
+      "match": "\\b(parallel|custom|bus)\\b"
+    },
+    "strings": {
+      "name": "string.quoted.double.circom",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.circom",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.circom",
+          "match": "\\b0x[0-9A-Fa-f]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.circom",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.circom",
+          "match": "(\\+|\\-|\\*|\\/|\\\\|%|\\*\\*)"
+        },
+        {
+          "name": "keyword.operator.bitwise.circom",
+          "match": "(&|\\||\\^|~|<<|>>)"
+        },
+        {
+          "name": "keyword.operator.logical.circom",
+          "match": "(&&|\\|\\||!)"
+        },
+        {
+          "name": "keyword.operator.comparison.circom",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.assignment.circom",
+          "match": "(=|\\+=|\\-=|\\*=|\\/=|\\\\=|%=|\\*\\*=|<<=|>>=|&=|\\|=|\\^=)"
+        },
+        {
+          "name": "keyword.operator.increment.circom",
+          "match": "(\\+\\+|\\-\\-)"
+        },
+        {
+          "name": "keyword.operator.ternary.circom",
+          "match": "(\\?|:)"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.circom",
+          "match": "[,;]"
+        },
+        {
+          "name": "punctuation.bracket.circom",
+          "match": "[\\[\\]\\(\\)\\{\\}]"
+        }
+      ]
+    }
+  }
+}

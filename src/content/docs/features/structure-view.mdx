@@ -1,0 +1,113 @@
+---
+title: Structure View
+description: Hierarchical view of file contents
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The Structure view provides a hierarchical outline of your Circom file, making it easy to navigate complex circuits.
+
+## Opening Structure View
+
+| Action | macOS | Windows/Linux |
+|--------|-------|---------------|
+| Toggle Structure view | `Cmd+7` | `Alt+7` |
+
+You can also access it via **View** → **Tool Windows** → **Structure**.
+
+## What's Displayed
+
+The Structure view shows a tree hierarchy of your file:
+
+```
+File.circom
+├── template ComponentA
+│   ├── input in1
+│   ├── input in2
+│   ├── output out1
+│   ├── output out2
+│   ├── var localVar1
+│   └── component subComp
+├── template ComponentB
+│   ├── input x
+│   └── output y
+├── template MainCircuit
+│   ├── input publicInput
+│   ├── input privateInput
+│   ├── output publicOutput
+│   ├── var intermediateVar
+│   ├── component processor
+│   └── component validator
+├── function helperFunction
+└── function anotherHelper
+```
+
+### Elements Shown
+
+- **Templates** with all their members:
+  - Input signals
+  - Output signals
+  - Internal signals
+  - Variables
+  - Component instances
+- **Functions** with their parameters
+- **Main component** declaration
+
+<Aside type="tip">
+Click any element in the Structure view to jump directly to its location in the code.
+</Aside>
+
+## Navigation
+
+### Clicking Elements
+
+Single-click an element to:
+- Highlight it in the Structure view
+- Scroll the editor to show that element
+
+### Expanding/Collapsing
+
+- Click the arrow icons to expand or collapse sections
+- Double-click a group header to toggle all children
+
+### Keyboard Navigation
+
+With the Structure view focused:
+
+| Action | Key |
+|--------|-----|
+| Navigate up/down | Arrow keys |
+| Expand | Right arrow |
+| Collapse | Left arrow |
+| Jump to element | Enter |
+
+## Filtering
+
+At the top of the Structure view, you can:
+
+- **Search**: Type to filter elements by name
+- **Sort**: Toggle alphabetical sorting
+- **Show/Hide**: Filter by element type (templates, functions, etc.)
+
+## Use Cases
+
+### Quick Overview
+
+Open the Structure view to quickly understand:
+- How many templates are in a file
+- What signals each template exposes
+- The overall organization of your circuit
+
+### Refactoring Planning
+
+Before refactoring, use Structure view to:
+- Identify all components and their dependencies
+- See which templates have many signals (potential complexity)
+- Plan your changes
+
+### Code Review
+
+During code review, Structure view helps you:
+- Navigate between templates quickly
+- Verify signal naming conventions
+- Check for consistent organization

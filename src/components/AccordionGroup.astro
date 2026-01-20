@@ -1,0 +1,19 @@
+---
+---
+
+<div class="accordion-group">
+  <slot />
+</div>
+
+<style>
+  .accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .accordion-group :global(.accordion) {
+    margin: 0;
+  }
+</style>

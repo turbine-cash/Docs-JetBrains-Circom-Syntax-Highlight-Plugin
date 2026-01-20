@@ -1,0 +1,69 @@
+---
+const PAGE_TITLE_ID = '_top';
+
+const { entry, sidebar } = Astro.locals.starlightRoute;
+const title = entry.data.title;
+const description = entry.data.description;
+
+function findParentGroup(sidebar: any[], currentSlug: string): string | null {
+	for (const item of sidebar) {
+		if (item.type === 'group') {
+			for (const subItem of item.entries || []) {
+				if (subItem.type === 'group') {
+					for (const link of subItem.entries || []) {
+						if (link.type === 'link' && link.isCurrent) {
+							return subItem.label;
+						}
+					}
+				} else if (subItem.type === 'link' && subItem.isCurrent) {
+					return item.label;
+				}
+			}
+		}
+	}
+	return null;
+}
+
+const parentGroup = findParentGroup(sidebar, entry.slug);
+---
+
+<div class="page-header">
+	{parentGroup && (
+		<span class="breadcrumb">{parentGroup}</span>
+	)}
+	<h1 id={PAGE_TITLE_ID}>{title}</h1>
+	{description && (
+		<p class="description">{description}</p>
+	)}
+</div>
+
+<style>
+	@layer starlight.core {
+		.page-header {
+			margin-top: 1rem;
+		}
+
+		.breadcrumb {
+			display: block;
+			font-size: 0.75rem;
+			font-weight: 500;
+			color: var(--sl-color-accent);
+			margin-bottom: 0.5rem;
+		}
+
+		h1 {
+			font-size: var(--sl-text-h1);
+			line-height: var(--sl-line-height-headings);
+			font-weight: 600;
+			color: var(--sl-color-white);
+			margin: 0;
+		}
+
+		.description {
+			font-size: 1.125rem;
+			color: var(--sl-color-gray-3);
+			margin-top: 0.5rem;
+			margin-bottom: 0;
+		}
+	}
+</style>
