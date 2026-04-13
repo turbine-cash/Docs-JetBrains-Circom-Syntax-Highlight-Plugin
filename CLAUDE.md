@@ -128,7 +128,7 @@ The grammar is defined in `src/grammars/circom.tmLanguage.json` and loaded in `a
 ## Links
 
 - **Plugin Marketplace**: https://plugins.jetbrains.com/plugin/29751-circom-language-support
-- **GitHub**: https://github.com/ZKLSOL/JetBrains-Circom-Syntax-Highlight-Plugin
+- **GitHub**: https://github.com/turbine-cash/JetBrains-Circom-Syntax-Highlight-Plugin
 
 ## Gotchas
 

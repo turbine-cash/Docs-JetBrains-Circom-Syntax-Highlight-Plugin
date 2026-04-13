@@ -25,7 +25,7 @@ export default defineConfig({
 			favicon: '/favicon.png',
 			customCss: ['./src/styles/custom.css'],
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/ZKLSOL/JetBrains-Circom-Syntax-Highlight-Plugin' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/turbine-cash/JetBrains-Circom-Syntax-Highlight-Plugin' },
 			],
 			components: {
 				Header: './src/components/Header.astro',
@@ -69,7 +69,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Keyboard Shortcuts', slug: 'keyboard-shortcuts' },
 						{ label: 'Troubleshooting', slug: 'troubleshooting' },
-						{ label: 'Changelog', link: 'https://github.com/ZKLSOL/JetBrains-Circom-Syntax-Highlight-Plugin/releases' },
+						{ label: 'Changelog', link: 'https://github.com/turbine-cash/JetBrains-Circom-Syntax-Highlight-Plugin/releases' },
 					],
 				},
 			],
